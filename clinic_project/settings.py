@@ -26,9 +26,9 @@ SECRET_KEY = os.environ.get(
 DEBUG = os.environ.get("DEBUG", "True").lower() == "true"
 
 ALLOWED_HOSTS = [
-    "clinicappointment-gmor.onrender.com",
-    "localhost",
-    "127.0.0.1",
+    'vitality-clinic.onrender.com',
+    'localhost',
+    '127.0.0.1',
 ]
 
 
