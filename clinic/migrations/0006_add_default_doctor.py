@@ -1,6 +1,7 @@
 from django.db import migrations
 
-def create_default_doctor(apps, schema_editor):
+
+def create_default_doctors(apps, schema_editor):
     Doctor = apps.get_model("clinic", "Doctor")
 
     Doctor.objects.get_or_create(
@@ -11,6 +12,15 @@ def create_default_doctor(apps, schema_editor):
         },
     )
 
+    Doctor.objects.get_or_create(
+        name="Dr. Mayur Mohan Astekar",
+        defaults={
+            "specialization": "General Physician",
+            "email": "mayur@gmail.com",
+        },
+    )
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -18,5 +28,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(create_default_doctor),
+        migrations.RunPython(create_default_doctors),
     ]
