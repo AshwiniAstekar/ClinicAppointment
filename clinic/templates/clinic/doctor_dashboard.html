@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Dashboard - Vitality Clinic</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f8f7;
+        }
+
+        .header {
+            background: #0d5954;
+            color: white;
+            padding: 25px 40px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .container {
+            width: 95%;
+            margin: 35px auto;
+        }
+
+        h2 {
+            color: #0d5954;
+        }
+
+        .table-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1100px;
+        }
+
+        th {
+            background: #0d5954;
+            color: white;
+            padding: 14px;
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .accept-btn {
+            background-color: #198754;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 6px;
+            display: inline-block;
+            margin: 2px;
+            font-weight: bold;
+        }
+
+        .reject-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 6px;
+            display: inline-block;
+            margin: 2px;
+            font-weight: bold;
+        }
+
+        .pending {
+            color: #d39e00;
+            font-weight: bold;
+        }
+
+        .accepted {
+            color: #198754;
+            font-weight: bold;
+        }
+
+        .rejected {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .review-card {
+    background: white;
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.review-card h3 {
+    margin-top: 0;
+}
+
+.review-card p {
+    margin: 8px 0;
+}
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Vitality Clinic - Doctor Dashboard</h1>
+</div>
+
+<div class="container">
+
+    <h2>Patient Appointments</h2>
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Serial No</th>
+                    <th>Patient Name</th>
+                    <th>Age</th>
+                    <th>Occupation</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Appointment Date</th>
+                    <th>Appointment Time</th>
+                    <th>Symptoms</th>
+                    <th>Doctor</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for appointment in appointments %}
+
+                <tr>
+                    <td>{{ forloop.counter}}</td>
+
+                    <td>
+                        {{ appointment.patient_name }}
+                    </td>
+
+                    <td>
+                        {{ appointment.age }}
+                    </td>
+
+                    <td>
+                        {{ appointment.occupation }}
+                    </td>
+
+                    <td>
+                        {{ appointment.phone }}
+                    </td>
+
+                    <td>
+                        {{ appointment.email }}
+                    </td>
+
+                    <td>
+                        {{ appointment.appointment_date|date:"M d, Y" }}
+                    </td>
+
+                    <td>
+                        {{ appointment.appointment_time|time:"h:i A" }}
+                    </td>
+
+                    <td>
+                        {{ appointment.symptoms }}
+                    </td>
+
+                    <td>
+                        {{ appointment.doctor.name }}
+                    </td>
+
+                    <td>
+
+                        {% if appointment.status == "Pending" %}
+
+                            <span class="pending">
+                                Pending
+                            </span>
+
+                        {% elif appointment.status == "Accepted" %}
+
+                            <span class="accepted">
+                                Accepted
+                            </span>
+
+                        {% elif appointment.status == "Rejected" %}
+
+                            <span class="rejected">
+                                Rejected
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        {% if appointment.status == "Pending" %}
+
+                            <a href="{% url 'accept_appointment' appointment.id %}"
+                               class="accept-btn">
+                                Accept
+                            </a>
+
+                            <a href="{% url 'reject_appointment' appointment.id %}"
+                               class="reject-btn">
+                                Reject
+                            </a>
+
+                        {% elif appointment.status == "Accepted" %}
+
+                            <span class="accepted">
+                                Accepted
+                            </span>
+
+                        {% elif appointment.status == "Rejected" %}
+
+                            <span class="rejected">
+                                Rejected
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="11">
+                        No appointments found.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+    <h2>Patient Reviews</h2>
+
+{% if reviews %}
+    {% for review in reviews %}
+        <div class="review-card">
+
+            <h3>{{ review.patient_name }}</h3>
+
+            
+           <strong>Rating:</strong>
+
+{% if review.rating == 4 %}
+    ⭐⭐⭐⭐
+{% elif review.rating == 3 %}
+    ⭐⭐⭐
+{% elif review.rating == 2 %}
+    ⭐⭐
+{% elif review.rating == 1 %}
+    ⭐
+
+{% endif %}
+
+            <p>
+                <strong>Comment:</strong>
+                {{ review.comment }}
+            </p>
+
+            <p>
+                <small>
+                    {{ review.created_at|date:"d M Y, h:i A" }}
+                </small>
+            </p>
+
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No review yet.</p>
+{% endif %}
+
+</div>
+<button onclick="history.back()"class="back-btn">⬅️Back</button>
+
+
+</body>
+</html>

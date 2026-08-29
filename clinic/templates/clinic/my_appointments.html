@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Appointments</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .appointment {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .appointment h2 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        .appointment p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .pending {
+            color: #d89b00;
+            font-weight: bold;
+        }
+
+        .accepted {
+            color: green;
+            font-weight: bold;
+        }
+
+        .rejected {
+            color: red;
+            font-weight: bold;
+        }
+
+        .no-appointment {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .review-section {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.review-button {
+    display: inline-block;
+    padding: 10px 18px;
+    background: #0d625d;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.review-button:hover {
+    background: #094b47;
+}
+.my-review {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f1f8f7;
+    border-left: 4px solid #0d625d;
+    border-radius: 6px;
+}
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>My Appointments</h1>
+
+    {% for appointment in appointments %}
+    
+
+    <div class="appointment">
+
+        <h2>
+             {{ appointment.doctor.name }}
+        </h2>
+ 
+        <p>
+            <strong>Date:</strong>
+            {{ appointment.appointment_date }}
+        </p>
+
+        <p>
+            <strong>Time:</strong>
+            {{ appointment.appointment_time }}
+        </p>
+
+        <p>
+            <strong>Symptoms:</strong>
+            {{ appointment.symptoms }}
+        </p>
+       
+
+        <p>
+            <strong>Status:</strong>
+         
+    
+
+            {% if appointment.status == "Pending" %}
+
+                <span class="pending">
+                    🟡 Pending
+                </span>
+
+            {% elif appointment.status == "Accepted" %}
+
+                <span class="accepted">
+                    🟢 Accepted
+                </span>
+
+            {% elif appointment.status == "Rejected" %}
+
+                <span class="rejected">
+                    🔴 Rejected
+                </span>
+
+            {% endif %}
+
+        </p>
+          {% if appointment.status == "Accepted" %}
+
+            <a href="{% url 'add_review' appointment.id %}"
+               class="review-button">
+                ⭐ Write Review
+            </a>
+
+        {% endif %}
+
+    </div>
+
+    {% empty %}
+
+        <div class="no-appointment">
+            <h2>No appointments found.</h2>
+            <p>You have not booked any appointments yet.</p>
+        </div>
+
+    {% endfor %}
+
+        
+
+    
+
+    
+        
+</div>
+
+</body>
+</html>
+

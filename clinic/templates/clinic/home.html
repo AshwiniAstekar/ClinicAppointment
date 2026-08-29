@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vitality Clinic</title>
+
+    <link rel="stylesheet" href="{% static 'clinic/css/style.css' %}">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Vitality Clinic</div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'doctors' %}">Doctors</a>
+            <a href="{% url 'book_appointment' %}">Book Appointment</a>
+        </div>
+    </nav>
+
+
+    <!-- Hero / Front Page -->
+    <section class="hero">
+
+        <img src="{% static 'clinic/images/vitality-clinic.jpg' %}"
+             alt="Vitality Clinic">
+
+        <div class="hero-content">
+
+            <h1>Welcome to Vitality Clinic</h1>
+
+            <p>
+                Rebalance. Rejuvenate. Restore.
+            </p>
+
+            <p class="hero-text">
+                Heal the Root. Restore the Balance.
+                Transform Your Life.
+            </p>
+
+            <a href="{% url 'book_appointment' %}" class="appointment-btn">
+                Book an Appointment
+            </a>
+            
+
+        </div>
+
+    </section>
+
+
+    <!-- Services -->
+    <section class="services">
+
+        <h2>Our Approach to Wellness</h2>
+
+        <div class="service-container">
+
+            <div class="service-card">
+                <h3>🌿 Holistic Healing</h3>
+                <p>Personalized care focused on overall wellness.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>🧘 Lifestyle Balance</h3>
+                <p>Supporting healthy lifestyle choices.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>🌱 Natural Wellness</h3>
+                <p>Natural approaches for better wellbeing.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>⚕️ Integrative Care</h3>
+                <p>Comprehensive care for our patients.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+</html>

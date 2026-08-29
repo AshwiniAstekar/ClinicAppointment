@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appointment Successful</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7f6;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .box {
+            width: 500px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #0d4f49;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #d9b85b;
+            color: #000;
+            text-decoration: none;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h1>Appointment Booked Successfully!</h1>
+
+        <p>
+            Thank you for booking your appointment with Vitality Clinic.
+        </p>
+
+        <p>
+            Your appointment request has been sent to the doctor.
+        </p>
+
+        <a href="{% url 'home' %}">
+            Back to Home
+        </a>
+
+    </div>
+
+</body>
+</html>

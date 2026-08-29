@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Our Doctors</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f8fb;
+            margin: 0;
+        }
+
+        .header {
+            background-color: #2c7be5;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+        }
+
+        .doctor-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .doctor-card h2 {
+            color: #2c7be5;
+        }
+
+        .book-btn {
+            display: inline-block;
+            background-color: #2c7be5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Our Doctors</h1>
+    <p>Consult our experienced doctors</p>
+</div>
+
+<div class="container">
+
+    <div class="doctor-card">
+        <h2>Dr.Mayur Mohan Astekar</h2>
+        <p><strong>Specialization: </strong> Consultant Homeopath</p>
+        <p><strong>Email: </strong>vitalityclinic.homeopathy21@gmail.com</p>
+        <p>
+    <strong>Phone: 9663831249 </strong>
+    {{ doctor.phone }}
+</p>
+
+        
+    </div>
+
+    <div class="doctor-card">
+        <h2>Dr.Tejashree N Patil</h2>
+        <p><strong>Specialization: </strong> Consultant Homeopath</p>
+        <p><strong>Email: </strong> vitalityclinic.homeopathy21@gmail.com</p>
+        <p>
+    <strong>Phone: 9611601069</strong>
+    {{ doctor.phone }}
+</p>
+
+
+        
+    </div>
+    <button onclick="history.back()"class="back-btn">⬅️Back</button>
+
+</div>
+
+</body>
+</html> 
